@@ -2,6 +2,11 @@ import React from "react";
 import "./App.css";
 import VideoPlayer from "./VideoPlayer";
 
+var videojs = require('video.js');
+
+// Initialize the AirPlay plugin
+// require('@silvermine/videojs-airplay')(videojs);
+
 function App() {
   return (
     <div className="App">

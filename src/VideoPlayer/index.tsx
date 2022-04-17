@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import videojs, { VideoJsPlayer } from "video.js";
-import "video.js/dist/video-js.css";
+import 'video.js/dist/video-js.css';
 
 // initialize video.js plugins
 import "videojs-youtube";
@@ -9,6 +9,7 @@ import "videojs-landscape-fullscreen";
 type Props = {
   options: videojs.PlayerOptions;
   onReady: (player: videojs.Player) => void;
+  style?: React.CSSProperties;
 };
 
 const initialOptions: videojs.PlayerOptions = {
@@ -31,9 +32,14 @@ const initialOptions: videojs.PlayerOptions = {
   userActions: {
     click: true,
   },
+  // plugins: {
+  //   airplay: {
+  //     addButtonToControlBar: true,
+  //   }
+  // }
 };
 
-function VideoPlayer({ options = initialOptions, onReady }: Props) {
+function VideoPlayer({ options = initialOptions, onReady, ...props }: Props) {
   const videoRef = useRef<HTMLVideoElement>();
   const playerRef = useRef<VideoJsPlayer & { landscapeFullscreen?: any }>();
 
@@ -74,9 +80,10 @@ function VideoPlayer({ options = initialOptions, onReady }: Props) {
   }, [onReady, options]);
 
   return (
-    <div>
+    <div {...props}>
       <div data-vjs-player>
         <video
+          x-webkit-airplay="allow"
           ref={(ref) => {
             if (ref) {
               videoRef.current = ref;
