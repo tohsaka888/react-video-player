@@ -1,8 +1,16 @@
 {
-  "name": "react-video-player",
+  "name": "tohsaka888-video-player",
   "version": "0.1.0",
-  "private": true,
+  "main": "lib/commonjs/VideoPlayer.js",
+  "types": "lib/typescript/VideoPlayer.d.ts",
+  "module": "lib/module/VideoPlayer.js",
+  "source": "src/VideoPlayer.tsx",
   "dependencies": {
+    "@types/video.js": "^7.3.33",
+    "video.js": "^7.18.1",
+    "videojs-landscape-fullscreen": "^11.33.0"
+  },
+  "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -10,22 +18,26 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@types/video.js": "^7.3.33",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
     "react-scripts": "5.0.1",
-    "typescript": "^4.4.2",
-    "video.js": "^7.18.1",
-    "videojs-landscape-fullscreen": "^11.33.0",
-    "videojs-youtube": "^2.6.1",
-    "web-vitals": "^2.1.0"
+    "typescript": "^4.4.2"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:commonjs": "babel src/VideoPlayer --out-dir lib/commonjs --extensions '.ts,.tsx' --source-maps",
+    "build:module": "tsc src/VideoPlayer/*.tsx --module es2022 --target es5 --jsx 'react' --sourceMap --skipLibCheck --allowSyntheticDefaultImports --outDir lib/module --moduleResolution node",
+    "build:typescript": "tsc src/VideoPlayer/*.tsx --declaration --emitDeclarationOnly --jsx 'react'  --skipLibCheck --allowSyntheticDefaultImports  --outDir lib/typescript"
   },
+  "files": [
+    "src/VideoPlayer",
+    "lib"
+  ],
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -43,5 +55,24 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tohsaka888/react-video-player.git"
+  },
+  "keywords": [
+    "react",
+    "videojs",
+    "player"
+  ],
+  "author": "tohsaka888",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tohsaka888/react-video-player/issues"
+  },
+  "homepage": "https://github.com/tohsaka888/react-video-player#readme"
 }
